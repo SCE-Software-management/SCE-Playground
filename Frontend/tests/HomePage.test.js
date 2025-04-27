@@ -9,6 +9,9 @@ import HomePage from '../src/pages/HomePage.jsx';
 import { StoreContext } from '../src/store/StoreContext.jsx';
 jest.mock('../src/services/api.js', () => ({}));
 
+// MOCK api.js to avoid import.meta.env crash
+jest.mock('../src/services/api.js', () => ({}));
+
 describe('HomePage', () => {
   test('renders the welcome message', () => {
     const mockContext = { user: { firstName: 'Alice' } };
