@@ -1,5 +1,5 @@
 // frontend/src/App.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -17,8 +17,7 @@ import './App.css'; // Import the new CSS
 import ReportsPage from './pages/ReportsPage.jsx';
 
 function Navbar() {
-  const { user, signOut } = useContext(StoreContext);
-  const navigate = useNavigate();
+  const { user, signOut, isLoading, isValidating } = useContext(StoreContext);  const navigate = useNavigate();
 
   function signUserOut() {
     signOut();
