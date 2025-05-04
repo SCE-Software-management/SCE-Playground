@@ -57,15 +57,13 @@ function Navbar() {
       <div className='nav-right'>
         <div className='nav-links'>
           <Link to='/'>Home</Link>
-          <Link to='/products'>Products</Link>
           {!user ? (
-            <div className='nav-links'>
-              <Link to='/signin'>Sign In</Link>
-              <Link to='/signup'>Sign Up</Link>
-            </div>
+            <Link to='/signin'>Sign In</Link>
           ) : (
             <a onClick={signUserOut}>Sign out</a>
           )}
+          <Link to='/signup'>Sign Up</Link>
+          <Link to='/products'>Products</Link>
         </div>
         {user && <div className='user-circle'>{userInitial}</div>}
       </div>

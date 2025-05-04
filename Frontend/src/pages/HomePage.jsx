@@ -14,7 +14,11 @@ export default function HomePage() {
       <p>Explore our products, check your receipts, or get support. </p>
 
       <div className='home-images'>
-        <img src='/reports.jpg' alt='Colorful Product 1' onClick={() => navigate('/reports')} />
+        <img
+          src='/reports.jpg'
+          alt='Colorful Product 1'
+          onClick={() => navigate('/reports')}
+        />
       </div>
     </div>
   );

@@ -3,9 +3,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from '../src/store/StoreContext'; 
 
 import HomePage from '../src/pages/HomePage.jsx';
 import { StoreContext } from '../src/store/StoreContext.jsx';
+jest.mock('../src/services/api.js', () => ({}));
 
 // MOCK api.js to avoid import.meta.env crash
 jest.mock('../src/services/api.js', () => ({}));
