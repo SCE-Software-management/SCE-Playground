@@ -1,4 +1,4 @@
-// authentication-service/src/index.js
+// products-service/src/index.js
 import 'dotenv/config';
 import express, { json } from 'express';
 import Routes from './routes/productsRoutes.js';
@@ -18,7 +18,7 @@ initDb()
     console.error('Database connection failed:', err.message);
   });
 
-// Authentication routes
+// Products routes
 app.use('/', Routes);
 
 app.listen(PORT, () => {
