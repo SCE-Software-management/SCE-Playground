@@ -9,6 +9,7 @@ import { StoreProvider, StoreContext } from './store/StoreContext.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import './App.css'; // Import the new CSS
 import ReportsPage from './pages/ReportsPage.jsx';
+import LeadsPage from './pages/LeadsPage.jsx';
 
 function Navbar() {
   const { user, signOut, isLoading, isValidating } = useContext(StoreContext);
@@ -59,13 +60,13 @@ function Navbar() {
           <Link to='/'>Home</Link>
           <Link to='/products'>Products</Link>
           {!user ? (
-            <div className='nav-links'>
-              <Link to='/signin'>Sign In</Link>
-              <Link to='/signup'>Sign Up</Link>
-            </div>
-          ) : (
-            <a onClick={signUserOut}>Sign out</a>
-          )}
+             <div className='nav-links'>
+               <Link to='/signin'>Sign In</Link>
+               <Link to='/signup'>Sign Up</Link>
+             </div>
+           ) : (
+             <a onClick={signUserOut}>Sign out</a>
+           )}
         </div>
         {user && <div className='user-circle'>{userInitial}</div>}
       </div>
@@ -84,6 +85,8 @@ function App() {
             <Route path='/signin' element={<SignInPage />} />
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/reports' element={<ReportsPage />} />
+            <Route path='/createlead' element={<LeadsPage />} />
+
             <Route
               path='/products'
               element={
@@ -93,7 +96,9 @@ function App() {
               }
             />
           </Routes>
+
         </div>
+        
       </BrowserRouter>
     </StoreProvider>
   );
