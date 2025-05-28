@@ -5,6 +5,7 @@ import { forwardAuthRequests, forwardSalesRequests } from '../controllers/gatewa
 const router = Router();
 
 router.use('/auth', forwardAuthRequests);
+router.get('/ping', ping);
 
 router.use('/sales', forwardSalesRequests);
 
