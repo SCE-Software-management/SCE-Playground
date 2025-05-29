@@ -1,6 +1,8 @@
 // gateway-service/src/controllers/gatewayController.js
 import axios from 'axios';
 import 'dotenv/config';
+import https from 'https';
+
 
 const forwardAuthRequests = async (req, res, next) => {
   try {
@@ -24,7 +26,7 @@ const forwardAuthRequests = async (req, res, next) => {
     console.log('Error while forwarding request to auth service. Error: ', error, error?.data);
 
     if (error.response) {
-      // The microservice responded with an error status
+      // The microservice responded with an error status.
       return res.status(error.response.status).json(error.response.data);
     }
     return next(error);
@@ -39,4 +41,45 @@ export async function ping(req, res, next) {
   }
 }
 
-export { forwardAuthRequests };
+
+// gateway-service/src/controllers/gatewayController.js
+const forwardSalesRequests = async (req, res, next) => {
+  try {
+    // Use environment variable instead of hardcoded URL
+    const salesServiceUrl = process.env.SALES_SERVICE_URL;
+    const path = req.originalUrl.replace('/sales', '');
+    const url = `${salesServiceUrl}/sales${path}`;
+
+    console.log('Forwarding request to sales service:', url);
+    console.log('Forwarding data to sales service:', req.data);
+
+    const response = await axios({
+      method: req.method,
+      url: url,
+      data: req.body,
+      headers: { 
+        'User-Agent': 'Mozilla/5.0 (compatible; Render-Gateway/1.0)',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return res.status(response.status).json(response.data);
+  } catch (error) {
+    console.log('❌ Error while forwarding request to sales service:');
+  
+    try {
+      console.log('📛 error.toJSON:', error.toJSON());
+    } catch (jsonErr) {
+      console.log('📛 error.message:', error.message);
+    }
+  
+    return res
+      .status(error.response?.status || 500)
+      .json(error.response?.data || { error: 'Unknown gateway error' });
+  }
+  
+  
+};
+
+export { forwardAuthRequests,forwardSalesRequests };

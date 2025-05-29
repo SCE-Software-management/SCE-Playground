@@ -108,6 +108,70 @@ body {
 }
 
 /* =====================
+   Sales Pages
+===================== */
+
+.salesBtn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.salesBtn:hover{
+  background: #1976d2;
+}
+
+.addSalesConverstaionBtn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.SalesForecastbtn{
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.salesBtn:hover{
+  background: #1976d2;
+}
+
+.searchSaleHistorybtn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  background: #00897b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.searchSaleHistorybtn:hover {
+  background: #1976d2;
+}
+
+
+/* =====================
    Auth Pages
 ===================== */
 .auth-container {
@@ -161,34 +225,4 @@ body {
   color: red;
   text-align: center;
   margin-bottom: 0.5rem;
-}
-
-/* ---------- LOADER ---------- */
-.loader-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #ccc;
-  border-top-color: #0077cc;   /* matches your theme */
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Optional: dim disabled button */
-.auth-form button:disabled {
-  opacity: 0.6;
-  cursor: default;
 }
