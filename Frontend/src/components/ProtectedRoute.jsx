@@ -4,10 +4,9 @@ import { Navigate } from 'react-router-dom';
 import { StoreContext } from '../store/StoreContext.jsx';
 
 export default function ProtectedRoute({ children }) {
-  const { token } = useContext(StoreContext);
+  const { user } = useContext(StoreContext);
 
-  if (!token) {
-    // If there's no token, redirect to /signin
+  if (!user) {
     return <Navigate to="/signin" replace />;
   }
 
