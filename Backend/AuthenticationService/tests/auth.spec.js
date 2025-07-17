@@ -43,6 +43,7 @@ describe('Authentication Service Tests', () => {
         expect(res.body).to.have.property('firstName').equal('Test');
         expect(res.body).to.have.property('lastName').equal('User');
         done();
+        
       });
   });
 
@@ -113,3 +114,26 @@ describe('Authentication Service Tests', () => {
       });
   });
 });
+
+  it('should validate a valid token', (done) => {
+    // First sign in to get a token
+    chai.request.execute(app)
+      .post('/signin')
+      .send({
+        email: createdUserEmail,
+        password: '123456'
+      })
+      .end((err, res) => {
+        const { token } = res.body;
+        expect(token).to.exist;
+
+        chai.request.execute(app)
+          .post('/validate-token')
+          .send({ token })
+          .end((innerErr, innerRes) => {
+            expect(innerRes).to.have.status(200);
+            expect(innerRes.body).to.have.property('isValid').equal(true);
+            done();
+          });
+      });
+  });

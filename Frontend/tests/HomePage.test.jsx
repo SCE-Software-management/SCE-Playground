@@ -1,7 +1,7 @@
 // tests/HomePage.test.jsx
+import { describe, test, expect } from 'vitest'; // ✅ חובה להיות ראשון
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import HomePage from '../src/pages/HomePage.jsx';

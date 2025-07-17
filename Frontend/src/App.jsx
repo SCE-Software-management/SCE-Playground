@@ -1,14 +1,6 @@
 // frontend/src/App.jsx
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useContext, useEffect } from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx';
 import SignInPage from './pages/SignInPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
@@ -19,11 +11,20 @@ import SalesSearchHistoryPage from './pages/SalesSearchHistoryPage.jsx';
 import SalesForecastPage from './pages/SalesForecastPage.jsx';
 import SalesRevenuePage from './pages/SalesRevenuePage.jsx';
 import TechSupportPage from './pages/TechSupportPage.jsx';
+import ReportsPage from './pages/ReportsPage.jsx';
+import CustomerServicePage from './pages/CustomerServicePage.jsx';
+import ClientPage from './pages/ClientPage.jsx'; 
+import ClientRequestPage from './pages/ClientRequestPage.jsx';
+import SubscriptionsPage from './pages/SubscriptionsPage.jsx';
+import SupportHistoryPage from './pages/SupportHistoryPage.jsx';
+import ManageRequestsPage from './pages/ManageRequestsPage.jsx';
+import RespondPage from './pages/RespondRequestPage.jsx';
+import FeedbackPage from './pages/FeedbackPage.jsx';
+
 import { StoreProvider, StoreContext } from './store/StoreContext.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import ProductsAdminRoute from './components/ProductsAdminRoute';
-import './App.css'; // Import the new CSS
-import ReportsPage from './pages/ReportsPage.jsx';
+import './App.css';
 import SalesLeadsPage from  './pages/SalesLeadsPage.jsx';
 
 
@@ -44,6 +45,7 @@ function Navbar() {
   const { user, signOut, isLoading, isValidating } = useContext(StoreContext);
 
   const navigate = useNavigate();
+  const [unreadCount, setUnreadCount] = useState(0);
 
   function signUserOut() {
     signOut();
@@ -86,17 +88,27 @@ function Navbar() {
       <div className="nav-right">
         <div className="nav-links">
           <Link to="/">Home</Link>
+
           {!user ? (
-            <div className="nav-links">
+            <>
               <Link to="/signin">Sign In</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/products">Products</Link>
               <Link to="/createlead">Leads Generation</Link>
-            </div>
+            </>
           ) : (
-            <a onClick={signUserOut}>Sign out</a>
+            <>
+              <a onClick={signUserOut}>Sign Out</a>
+              <Link to="/products">Products</Link>
+              <Link to="/subscriptions">Subscriptions</Link>
+              <Link to="/client">Client Portal</Link>
+              <Link to="/support-history">My Requests</Link>
+              <Link to="/manage-requests">Manage Requests</Link>
+            </>
           )}
         </div>
+
+        {/* If logged in, show user circle */}
         {user && <div className="user-circle">{userInitial}</div>}
       </div>
 
@@ -104,11 +116,13 @@ function Navbar() {
   );
 }
 
+
 function App() {
   return (
     <StoreProvider>
       <BrowserRouter>
         <Navbar />
+
         <div style={{ backgroundImage: 'url(/background.png)' }}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -131,6 +145,7 @@ function App() {
             <Route path='/reports' element={<ReportsPage />} />
             <Route path='/sales' element={<SalesPage />} />
 
+            <Route path='/reports' element={<ReportsPage />} />
             <Route path='/salesConverstaion' element={<SalesConverstaionPage />} />
             <Route path='/salesSearchHistory' element={<SalesSearchHistoryPage />}/>
             <Route path='/SalesLeadsPage' element={<SalesLeadsPage />}/>
@@ -213,7 +228,16 @@ function App() {
                   <UpdateStatusPage />
                 </ProtectedRoute>
               }
-              />
+              
+            />
+            <Route
+              path='/products'
+              element={
+                <ProtectedRoute>
+                  <ProductsPage />
+                  </ProtectedRoute>
+            }
+            />
           </Routes>
         </div>
       </BrowserRouter>
@@ -224,5 +248,4 @@ function App() {
 
 
 }
-
 export default App;

@@ -1,5 +1,5 @@
-// src/pages/HomePage.jsx
-import React, { useContext } from 'react';
+// frontend/src/pages/HomePage.jsx
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../store/StoreContext';
 
@@ -13,6 +13,7 @@ export default function HomePage() {
     alignItems: 'center',
     width: '300px',
   };
+
   const imgStyle = {
     width: '100%',
     borderRadius: '20px',
@@ -20,6 +21,7 @@ export default function HomePage() {
     boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
     transition: 'transform 0.3s ease',
   };
+
   const btnStyle = {
     marginTop: '15px',
     background: '#FF9992',
@@ -34,7 +36,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="home-container">
+    <div className='home-container'>
       <h1>Hi {user?.firstName}! Welcome to SCE Software Ltd.</h1>
       <p>Explore our products, check your receipts, or get support.</p>
 
@@ -53,17 +55,17 @@ export default function HomePage() {
             src="/reports.jpg"
             alt="Reports"
             onClick={() => navigate('/reports')}
+            style={imgStyle}
           />
         </div>
 
+        {/* ── PRODUCTS TILE ── */}
         <div style={tileStyle}>
-          <img src="/reports.jpg" alt="Products" />
+          <img src="/reports.jpg" alt="Products" style={imgStyle} />
           <button
             onClick={() => navigate('/products')}
             style={btnStyle}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.transform = 'scale(1.05)')
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           >
             Products
@@ -76,46 +78,57 @@ export default function HomePage() {
             src="/tech-sup.jpg"
             alt="Tech Support"
             onClick={() => navigate('/techsupport')}
+            style={imgStyle}
           />
         </div>
 
         {/* ── MANAGE LEADS TILE ── */}
         <div style={tileStyle}>
-          <img src="/lead_manager.png" alt="Lead Manager" />
+          <img src="/lead_manager.png" alt="Lead Manager" style={imgStyle} />
           <button
             onClick={() => navigate('/lead-manager')}
             style={btnStyle}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.transform = 'scale(1.05)')
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           >
             Lead Manager
           </button>
         </div>
+
+        {/* ── SALES TILE ── */}
         <div style={tileStyle}>
-            <button
-              className="salesBtn"
-              onClick={() => navigate('/sales')}
-            >
-              Sales
-            </button>
-</div>
-             {/* ── FINANCE TILE ── */}
+          <button
+            className="salesBtn"
+            onClick={() => navigate('/sales')}
+            style={btnStyle}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          >
+            Sales
+          </button>
+        </div>
+
+        {/* ── FINANCE TILE ── */}
         <div style={tileStyle}>
           <img src="/reports.jpg" alt="Finance" style={imgStyle} />
           <button
             onClick={() => navigate('/finance-module')}
             style={btnStyle}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.transform = 'scale(1.05)')
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.transform = 'scale(1)')
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           >
             Finance
           </button>
+        </div>
+
+        {/* ── COLORFUL PRODUCT TILE ── */}
+        <div style={tileStyle}>
+          <img
+            src="/reports.jpg"
+            alt="Colorful Product 1"
+            onClick={() => navigate('/reports')}
+            style={imgStyle}
+          />
         </div>
       </div>
     </div>
